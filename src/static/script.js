@@ -41,7 +41,17 @@ async function submitGuess() {
         }, 2000);
     }
 }
-
+async function giveUp() {
+    const kanji = sessionStorage.getItem('kanji');
+    const hiragana = sessionStorage.getItem('hiragana');
+    const romaji = sessionStorage.getItem('romaji');
+    document.getElementById('result').innerText = `The answer was ${kanji} (${hiragana} - ${romaji})`;
+    setTimeout(() => {
+        document.getElementById('result').innerText = '';
+        document.getElementById('guess').value = '';
+        loadNewQuestion();
+    }, 2000);
+}
 let map;
 function initMap(lat, lng) {
     if (!map) {

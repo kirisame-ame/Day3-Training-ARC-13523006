@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Load CSV into DataFrame
 df = pd.read_csv('words/municipalities.csv')
-df["name_romaji"] = df["name_romaji"].str.lower()
+df["name_romaji"] = df["name_romaji"].str.lower().str.replace(" ", "")
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -24,7 +24,7 @@ def guess():
     data = request.json
     kanji = data.get("kanji")
     guess = data.get("guess")
-
+    guess = guess.lower().replace(" ", "") if guess else None
     if not kanji or not guess:
         return jsonify({"error": "Invalid request"}), 400
 
