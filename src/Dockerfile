@@ -27,4 +27,4 @@ EXPOSE 80 5001
 
 
 # Start Nginx and Gunicorn together
-CMD gunicorn --config gunicorn/gunicorn_config.py app:app
+CMD gunicorn --config gunicorn/gunicorn_config.py backend.app:app
