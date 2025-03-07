@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy application source and Gunicorn configuration
 COPY backend /app/backend
