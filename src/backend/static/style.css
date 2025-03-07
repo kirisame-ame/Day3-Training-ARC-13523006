@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin-top: 50px;
 }
 
 .container {
@@ -12,16 +11,68 @@ body {
     border-radius: 10px;
     background: #f9f9f9;
 }
-
+.flag{
+    width: 30px;
+    height: 30px;
+    margin: 5px 0;
+    object-fit: cover;
+}
+.langBut{
+    margin-top: 10px;
+    border-radius: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+#lang{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}
 #kanji {
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin: 10px;
 }
 
 #map {
     width: 100%;
     height: 300px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
+}
+
+h1{
+    font-size: 2rem;
+    padding: 0px;
+    margin-bottom: 0px;
+    display: inline;
+}
+p{
+    margin: 0px;
+    padding: 0px;
+}
+#result-area{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+#next{
+    border-radius: 10px;
+    background: #f8f9f7;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    align-items: center;
+    font-weight: bold;
+}
+#result{
+    font-weight: bold;
+}
+#score{
+    font-weight: bold;
+    margin-top: 5px;
 }

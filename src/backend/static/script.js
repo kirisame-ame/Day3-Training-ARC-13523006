@@ -1,4 +1,47 @@
+const translations = {
+    en: {
+        title: "BashoGO : Place Kanji Reading Guessing Game!",
+        guess: "Enter your guess",
+        correct: "Correct!",
+        wrong: "Wrong guess, try again!",
+        answer: "The answer was",
+        giveup: "Give up",
+        next: "Next",
+        submit: "Submit"
+    },
+    ja: {
+        title: "場所GO：地名漢字の読み方クイズ！",
+        guess: "答えを入力してください",
+        correct: "正解！",
+        wrong: "間違った答えです。もう一度試してください！",
+        answer: "答えは",
+        giveup: "答えを見る",
+        next: "次",
+        submit: "提出"
+    }
+};
+
+function getBrowserLanguage() {
+    const lang = navigator.language || navigator.userLanguage;
+    if (lang.startsWith("ja")) {
+        return "ja";
+    }
+    return "en";
+}
+
+function applyTranslations() {
+    const lang = getBrowserLanguage();
+    document.querySelector("#title").innerText = translations[lang].title;
+    document.querySelector("#guess").placeholder = translations[lang].guess;
+    document.querySelector("#giveup").innerHTML = translations[lang].giveup;
+    document.querySelector("#next").innerHTML = translations[lang].next;
+    document.querySelector("#guessButton").innerHTML = translations[lang].submit;
+}
+
+
 window.onload = async function () {
+    applyTranslations();
+    document.getElementById("next").style.display = "none";
     await loadNewQuestion();
 };
 var input = document.getElementById("guess");
@@ -18,7 +61,7 @@ async function loadNewQuestion() {
     sessionStorage.setItem('romaji', data.romaji);
     initMap(data.latitude, data.longitude);
 }
-
+let score = 0;
 async function submitGuess() {
     const guess = document.getElementById('guess').value;
     const kanji = sessionStorage.getItem('kanji');
@@ -30,10 +73,13 @@ async function submitGuess() {
     });
 
     const result = await response.json();
+    const corrMessage = getBrowserLanguage() === 'ja' ? translations.ja.correct : translations.en.correct;
+    const wrMessage = getBrowserLanguage() === 'ja' ? translations.ja.wrong : translations.en.wrong;
     const resultElement = document.getElementById('result');
-    resultElement.innerText = result.result === 'correct' ? '✅ Correct!' : '❌ Incorrect!';
+    resultElement.innerText = result.result === 'correct' ? '✅'+corrMessage : '❌'+wrMessage;
 
     if (result.result === 'correct') {
+        document.getElementById('score').innerText = `Score: ${++score}`;
         setTimeout(() => {
             resultElement.innerText = '';
             document.getElementById('guess').value = '';
@@ -45,13 +91,23 @@ async function giveUp() {
     const kanji = sessionStorage.getItem('kanji');
     const hiragana = sessionStorage.getItem('hiragana');
     const romaji = sessionStorage.getItem('romaji');
-    document.getElementById('result').innerText = `The answer was ${kanji} (${hiragana} - ${romaji})`;
-    setTimeout(() => {
-        document.getElementById('result').innerText = '';
-        document.getElementById('guess').value = '';
-        loadNewQuestion();
-    }, 2000);
+    const corrMessage = getBrowserLanguage() === 'ja' ? translations.ja.answer : translations.en.answer;
+    document.getElementById('preResult').innerText = corrMessage;
+    document.getElementById('result').innerText= `${kanji} (${hiragana} - ${romaji})`;
+    document.getElementById('next').style.display = "inline";
 }
+function applyTranslations(lang = getBrowserLanguage()) {
+    document.querySelector("#title").innerText = translations[lang].title;
+    document.querySelector("#guess").placeholder = translations[lang].guess;
+}
+function nextKanji() {
+    document.getElementById('preResult').innerText = '';
+    document.getElementById('result').innerText = '';
+    document.getElementById('guess').value = '';
+    document.getElementById('next').style.display = "none";
+    loadNewQuestion();
+}
+
 let map;
 function initMap(lat, lng) {
     if (!map) {
