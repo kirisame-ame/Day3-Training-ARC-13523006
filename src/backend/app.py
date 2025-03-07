@@ -5,7 +5,7 @@ import random
 app = Flask(__name__)
 
 # Load CSV into DataFrame
-df = pd.read_csv('words/municipalities.csv')
+df = pd.read_csv('backend/words/municipalities.csv')
 df["name_romaji"] = df["name_romaji"].str.lower().str.replace(" ", "")
 @app.route('/')
 def index():

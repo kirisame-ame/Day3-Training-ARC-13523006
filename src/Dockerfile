@@ -12,14 +12,13 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     && apt-get update && apt-get install -y \
     nginx \
-    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy application source and Gunicorn configuration
-COPY src /app/src
+COPY backend /app/backend
 COPY gunicorn /app/gunicorn
 
 
