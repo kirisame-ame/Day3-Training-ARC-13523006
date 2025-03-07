@@ -1,6 +1,6 @@
 const translations = {
     en: {
-        title: "BashoGO : Place Kanji Reading Guessing Game!",
+        title: "ChihouGO : Place Kanji Reading Guessing Game!",
         guess: "Enter your guess",
         correct: "Correct!",
         wrong: "Wrong guess, try again!",
@@ -10,7 +10,7 @@ const translations = {
         submit: "Submit"
     },
     ja: {
-        title: "場所GO：地名漢字の読み方クイズ！",
+        title: "地方GO：地名漢字の読み方クイズ！",
         guess: "答えを入力してください",
         correct: "正解！",
         wrong: "間違った答えです。もう一度試してください！",
