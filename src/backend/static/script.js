@@ -29,8 +29,7 @@ function getBrowserLanguage() {
     return "en";
 }
 
-function applyTranslations() {
-    const lang = getBrowserLanguage();
+function applyTranslations(lang=getBrowserLanguage()) {
     document.querySelector("#title").innerText = translations[lang].title;
     document.querySelector("#guess").placeholder = translations[lang].guess;
     document.querySelector("#giveup").innerHTML = translations[lang].giveup;
