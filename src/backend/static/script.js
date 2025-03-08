@@ -96,10 +96,6 @@ async function giveUp() {
     document.getElementById('result').innerText= `${kanji} (${hiragana} - ${romaji})`;
     document.getElementById('next').style.display = "inline";
 }
-function applyTranslations(lang = getBrowserLanguage()) {
-    document.querySelector("#title").innerText = translations[lang].title;
-    document.querySelector("#guess").placeholder = translations[lang].guess;
-}
 function nextKanji() {
     document.getElementById('preResult').innerText = '';
     document.getElementById('result').innerText = '';
