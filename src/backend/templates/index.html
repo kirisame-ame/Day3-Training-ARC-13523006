@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 id="title">ChihouGo : Place Kanji Reading Guessing Game</h1>
+    <h1 id="title">ChihouGo : Place Kanji Reading Game</h1>
     <p id="dev">by <a class="link" href="https://github.com/kirisame-ame" target="_blank" rel="noopener noreferer">Kirisame-ame</a></p>
     <div id="lang">
         <button onclick="applyTranslations('en')" class="langBut"><img src="static/img/us.png" class="flag">English</button>
@@ -28,7 +28,8 @@
     <button id="giveup" onclick="giveUp()">Give Up</button>
     <input type="text" id="guess" placeholder="Enter your guess">
     <button onclick="submitGuess()" id="guessButton">Submit</button>
-    <p>ひらがな or Romaji are OK</p>
+    <p>ひらがな / Romaji</p>
+    <p class="small">※Hepburn Romaji e.g. とうきょう -> toukyou</p>
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

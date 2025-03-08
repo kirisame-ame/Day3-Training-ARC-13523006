@@ -1,6 +1,6 @@
 const translations = {
     en: {
-        title: "ChihouGO : Place Kanji Reading Guessing Game!",
+        title: "ChihouGO : Place Kanji Reading Game!",
         guess: "Enter your guess",
         correct: "Correct!",
         wrong: "Wrong guess, try again!",
@@ -15,8 +15,8 @@ const translations = {
         correct: "正解！",
         wrong: "間違った答えです。もう一度試してください！",
         answer: "答えは",
-        giveup: "答えを見る",
-        next: "次",
+        giveup: "あきらめる",
+        next: "次へ",
         submit: "提出"
     }
 };
@@ -28,8 +28,9 @@ function getBrowserLanguage() {
     }
     return "en";
 }
-
+let language ="en";
 function applyTranslations(lang=getBrowserLanguage()) {
+    language = lang;
     document.querySelector("#title").innerText = translations[lang].title;
     document.querySelector("#guess").placeholder = translations[lang].guess;
     document.querySelector("#giveup").innerHTML = translations[lang].giveup;
@@ -72,8 +73,8 @@ async function submitGuess() {
     });
 
     const result = await response.json();
-    const corrMessage = getBrowserLanguage() === 'ja' ? translations.ja.correct : translations.en.correct;
-    const wrMessage = getBrowserLanguage() === 'ja' ? translations.ja.wrong : translations.en.wrong;
+    const corrMessage = language === 'ja' ? translations.ja.correct : translations.en.correct;
+    const wrMessage = language === 'ja' ? translations.ja.wrong : translations.en.wrong;
     const resultElement = document.getElementById('result');
     resultElement.innerText = result.result === 'correct' ? '✅'+corrMessage : '❌'+wrMessage;
 
@@ -90,7 +91,7 @@ async function giveUp() {
     const kanji = sessionStorage.getItem('kanji');
     const hiragana = sessionStorage.getItem('hiragana');
     const romaji = sessionStorage.getItem('romaji');
-    const corrMessage = getBrowserLanguage() === 'ja' ? translations.ja.answer : translations.en.answer;
+    const corrMessage = language === 'ja' ? translations.ja.answer : translations.en.answer;
     document.getElementById('preResult').innerText = corrMessage;
     document.getElementById('result').innerText= `${kanji} (${hiragana} - ${romaji})`;
     document.getElementById('next').style.display = "inline";

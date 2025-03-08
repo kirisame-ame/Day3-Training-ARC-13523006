@@ -76,3 +76,18 @@ p{
     font-weight: bold;
     margin-top: 5px;
 }
+#guess{
+    padding: 0px;
+    margin: 0px;
+    height: 28px;
+    width: 150px;
+}
+#giveup{
+    height: 30px;
+}
+#guessButton{
+    height: 30px;
+}
+.small{
+    font-size: 0.8rem;
+}

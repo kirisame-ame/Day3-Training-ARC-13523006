@@ -1,12 +1,26 @@
 from flask import Flask, request, jsonify,render_template
 import pandas as pd
 import random
+import re
+import cutlet
 
 app = Flask(__name__)
 
-# Load CSV into DataFrame
-df = pd.read_csv('backend/words/municipalities.csv')
-df["name_romaji"] = df["name_romaji"].str.lower().str.replace(" ", "")
+# Local testing
+# df = pd.read_csv('src/backend/words/dataset.csv')
+# Production
+df = pd.read_csv('backend/words/dataset.csv')
+
+# Re-romanize dataset
+# roman = cutlet.Cutlet()
+# roman.use_foreign_spelling = False
+# df = df.dropna(subset=["name_kana"])
+# df["name_romaji"] = df["name_kana"].map(lambda x: roman.map_kana(x) if x else None)
+# df["name_romaji"] = df["name_romaji"].str.replace(" ", "").str.lower()
+# df["name_romaji"] = df["name_romaji"].apply(lambda x: re.sub(r'[^a-zA-Z]', '', x).strip())
+# df.to_csv('src/backend/words/dataset.csv', index=False)
+# print(df["name_romaji"].head())
+
 @app.route('/')
 def index():
     return render_template('index.html')
