@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify,render_template
 import pandas as pd
 import random
-import re
-import cutlet
+#import re
+#import cutlet
 
 app = Flask(__name__)
 
