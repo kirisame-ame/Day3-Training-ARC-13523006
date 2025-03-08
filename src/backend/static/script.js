@@ -7,7 +7,8 @@ const translations = {
         answer: "The answer was",
         giveup: "Give up",
         next: "Next",
-        submit: "Submit"
+        submit: "Submit",
+        score: "Score: "
     },
     ja: {
         title: "地方GO：地名漢字の読み方クイズ！",
@@ -17,7 +18,8 @@ const translations = {
         answer: "答えは",
         giveup: "あきらめる",
         next: "次へ",
-        submit: "提出"
+        submit: "提出",
+        score: "スコア: "
     }
 };
 
@@ -36,6 +38,7 @@ function applyTranslations(lang=getBrowserLanguage()) {
     document.querySelector("#giveup").innerHTML = translations[lang].giveup;
     document.querySelector("#next").innerHTML = translations[lang].next;
     document.querySelector("#guessButton").innerHTML = translations[lang].submit;
+    document.querySelector("#score").innerText = translations[lang].score + score;
 }
 
 
@@ -79,7 +82,7 @@ async function submitGuess() {
     resultElement.innerText = result.result === 'correct' ? '✅'+corrMessage : '❌'+wrMessage;
 
     if (result.result === 'correct') {
-        document.getElementById('score').innerText = `Score: ${++score}`;
+        document.getElementById('score').innerText = `${translations[language].score} ${++score}`;
         setTimeout(() => {
             resultElement.innerText = '';
             document.getElementById('guess').value = '';
